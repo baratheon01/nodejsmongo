@@ -1,0 +1,54 @@
+<% include partials/header %>
+    <div class="container">
+        <div class="row">
+            <!--formulario-->
+            <div class="col md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="titulo" placeholder="Incerta el titulo" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                    <input type="text" name="autor" placeholder="Incerta el autor" class="form-control">
+                                </div>
+                            <div class="form-group">
+                                    <textarea name="categoria" id="" cols="80" class="form-control" placeholder="Incerta una descripcion"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--lista-->
+            <div class="col md-7">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < tasks.length; i++) { %>
+                           <tr>
+                               <td><%= tasks[i].titulo%></td>
+                               <td><%= tasks[i].autor%></td>
+                               <td>
+                                   <a href="rent/<%= tasks[i]._id%>" 
+                                    class="btn <%=tasks[i].status ? 'btn-success': 'btn-dark'%>">
+                                    Rentar</a>
+                                   <a href="delete/<%= tasks[i]._id%>" class="btn btn-danger">Eliminar
+                                    <a href="/update/<%= tasks[i]._id%>" class="btn btn-info">Actualizar</a>
+                                   </a>
+                               </td>
+                           </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <% include partials/footer %>
